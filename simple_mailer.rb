@@ -28,8 +28,22 @@ def message()
 end
 
 #Ask do you want to send another message?
-
-#open message method
-#prompt would you like to open message?
+user_input = ''
+def userInput()
+    puts "Would you like to Send a New Message?"
+    puts "Enter answer format Y/N"
+end
+userInput()
+user_input = gets.chomp.downcase
 #Logic: if yes, display message in console, if no ask a question
 # question = "Would you like to send a message?"
+
+if user_input == 'y'
+    message()
+elsif user_input == 'n'
+    puts "Goodbye"
+else
+    puts "Not a valid option"
+end
+#open message method
+#prompt would you like to open message?
