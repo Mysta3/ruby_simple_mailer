@@ -3,7 +3,6 @@
 ## Have it run again
 ## currently used from within terminal
 ## maybe set a timer for message display to simulate message sent
-user_input = ''
 
 def message()
     #grab input from user through CLI
@@ -27,24 +26,22 @@ def message()
 end
 
 
-def userInput()
+
+
+#set variables
+user_input = ''
+status = true
+
+#while status == true call message
+while status
+    message()
+    #Ask do you want to send another message?
     puts "Would you like to Send a New Message?"
     puts "Enter answer format Y/N"
+    user_input = gets.chomp.downcase
+    status = false if user_input == 'n'
+    puts "Goodbye!"
 end
 
-message()
-#Ask do you want to send another message?
-userInput()
-user_input = gets.chomp.downcase
-#Logic: if yes, display message in console, if no ask a question
-# question = "Would you like to send a message?"
-if user_input == 'y'
-    message()
-elsif user_input == 'n'
-    puts "Goodbye"
-else
-    puts "Not a valid option"
-    message()
-end
 #open message method
 #prompt would you like to open message?
