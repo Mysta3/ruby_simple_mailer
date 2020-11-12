@@ -14,8 +14,11 @@ def message()
    message = gets.chomp
    #timestamp message
    time = Time.now
+   #message id
+   message_id = (rand(100..400) / 2) * 256
    #message output
    puts "---BEGIN OF MESSAGE ---" 
+   puts "Id: #{message_id}"
    puts "Message Received at: #{time.strftime("%I:%M %p")}"
    puts "[+] To: #{to_name}: #{message}"
    puts "--- From: #{from_name}"
