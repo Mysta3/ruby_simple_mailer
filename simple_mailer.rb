@@ -1,10 +1,4 @@
-# Create Mailer template
-## Receive input from User
-## Have it run again
-## currently used from within terminal
 ## maybe set a timer for message display to simulate message sent
-total_messages  = []
-items = 0
 def message()
     #grab input from user through CLI
    puts "Who are you sending a message to?"
@@ -19,37 +13,62 @@ def message()
    #message id
    message_id = (rand(100..400) / 2) * 256
    #message output
-   puts "---BEGIN OF MESSAGE ---" 
-   puts "Id: #{message_id}"
+   puts "--- BEGIN OF MESSAGE ---" 
+   puts "[+] Id: #{message_id}"
    puts "Message Received at: #{timestamp}"
-   puts "[+] To: #{to_name}: #{message}"
-   puts "--- From: #{from_name}"
-   puts "---END OF MESSAGE---"
+   puts "To: #{to_name}:"
+   puts "#{message}"
+   puts "From: #{from_name}"
+   puts "--- END OF MESSAGE ---"
    #message sent confirmation
    #message received notification
-   return doc = ["uid: #{message_id}", "time received: #{timestamp}" , "To: #{to_name}", "From: #{from_name}", "Message: #{message}"]
+   doc = ["uid: #{message_id}", "time received: #{timestamp}" , "To: #{to_name}", "From: #{from_name}", "Message: #{message}"]
+end
+def checkUserInput(input, message_count,total_messages)
+   time = Time.now
+   timestamp = time.strftime("%A")
+    case input
+    when "send"
+        total_messages.push(message())
+    when "check"
+        puts "You currently have #{message_count} message(s)"
+    when "print"
+        if message_count > 0
+            puts total_messages
+        else 
+            puts "You currently have no messages to print"
+        end
+    when "quit"
+        puts "have a great #{timestamp}!! "
+        puts "Closing Program...."
+        sleep(1)
+        puts "Program was closed at #{time.strftime("%I:%M %p")}"
+        sleep(0.5)
+    end
 end
 
-#set variables
+total_messages  = []
+items = 0
+
 user_input = ''
 status = true
+puts "Hello and Welcome to Simple Message App!"
+sleep(1)
+puts "Here you can simulate sending messages to someone, almost like email."
+sleep(1)
+puts "Enjoy!"
+puts "Loading program....."
 
-#while status == true call message
 while status
-    total_messages.push(message())
-    #Ask do you want to send another message?
-    puts "Would you like to Send a New Message?"
-    puts "Enter answer format Y/N"
+    sleep(1.5)
+    puts "What would you like to do?"
+    puts "[+] OPTIONS: send, check, print, quit"
     user_input = gets.chomp.downcase
-    if user_input == 'n'
-        status = false
-        puts "Goodbye!"
-    end
+    checkUserInput(user_input, items, total_messages)
     items += 1
 end
 
-p total_messages
-p items
+
 
 
 #open message method
